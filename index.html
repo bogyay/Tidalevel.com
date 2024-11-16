@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamarosan...</title>
+    <style>
+        /* Alap stílusok */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFC900, #124992);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Fejléc stílus */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        /* Logó a fejlécben */
+        header .logo {
+            background-image: url('logo.png'); /* Ide tedd a logó kép URL-jét */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Játékos számláló a fejlécben keretben */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left .player-counter {
+            font-size: 1rem;
+            padding: 5px 10px;
+            border: 2px solid #fff; /* Fehér keret */
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.4); /* Átlátszó háttér a keret körül */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Fényes árnyék */
+        }
+
+        /* "Tidalevel.com" felirat */
+        .header-right {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #FFCA00, #124992); /* Színátmenet */
+            -webkit-background-clip: text; /* Színátmenet alkalmazása a szövegre */
+            background-clip: text;
+            color: transparent; /* Az alap szín átlátszó */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            max-width: 200px; /* Maximális szélesség a feliratnak */
+            margin-right: 20px; /* Kisebb margó a jobb oldalon */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Ha túl hosszú, akkor három ponttal zárja le */
+        }
+
+        /* Középen elhelyezkedő tartalom */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 100px; /* Fejléc miatt eltolás */
+        }
+
+        /* Animált logó */
+        .animated-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            animation: bounce 2s ease-in-out infinite, colorChange 5s ease-in-out infinite;
+        }
+
+        /* Hamarosan... üzenet */
+        .message {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Discord gomb */
+        .discord a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            background-color: #7289da;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .discord a:hover {
+            background-color: #5b6eae;
+            transform: translateY(-5px);
+        }
+
+        .discord img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Animációk */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.5);
+            }
+            100% {
+                filter: brightness(1);
+            }
+        }
+
+        /* Reszponzivitás */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .header-left {
+                gap: 10px;
+            }
+
+            .container {
+                margin-top: 150px; /* További eltolás kisebb képernyőkön */
+            }
+
+            .message {
+                font-size: 1.5rem;
+            }
+
+            .discord a {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Fejléc -->
+<header>
+    <div class="header-left">
+        <div class="logo"></div> <!-- Fejlécben lévő logó -->
+        <div class="player-counter" id="player-count">Játékosok: Online játékosok száma: Loading...</div>
+    </div>
+    <div class="header-right">Tidalevel.com</div> <!-- Tidalevel.com felirat -->
+</header>
+
+<!-- Központi tartalom -->
+<div class="container">
+    <!-- Animált logó -->
+    <div class="animated-logo"></div>
+    <div class="message">Hamarosan...</div>
+    
+    <!-- Discord gomb -->
+    <div class="discord">
+        <a href="https://discord.gg/9K8AhNCakE" target="_blank">
+            <img src="dc.png" alt="Discord Icon">
+            Csatlakozz a Discord szerverünkhöz!
+        </a>
+    </div>
+</div>
+
+<script>
+    // Minecraft szerver státuszának lekérése az API segítségével
+    const serverIP = '213.181.206.29';
+    const serverPort = '8159';
+
+    fetch(`https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.online) {
+                document.getElementById('player-count').innerText = `${data.players.online} online játékos`;
+            } else {
+                document.getElementById('player-count').innerText = 'Játékosok: Offline';
+            }
+        })
+        .catch(error => {
+            console.error('API hiba:', error);
+            document.getElementById('player-count').innerText = 'Játékosok: Hiba történt';
+        });
+</script>
+
+</body>
+</html>
